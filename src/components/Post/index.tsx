@@ -1,17 +1,31 @@
 import { PostContainer } from './styles'
+import { intlFormatDistance } from 'date-fns'
+import { NavLink } from 'react-router-dom'
 
-export function Post() {
+interface PostProps {
+  number: number
+  title: string
+  body: string
+  createdAt: string
+}
+
+export function Post({ number, title, body, createdAt }: PostProps) {
+  const url = `post/${number}`
   return (
     <PostContainer>
-      <header>
-        <strong>JavaScript data types and data structures</strong>
-        <span>Há 1 dia</span>
-      </header>
-      <p>
-        Programming languages all have -in data structures, but these often
-        differ from one language to another. This PostContainer attempts to list
-        the built-in data structures available in
-      </p>
+      <NavLink to={url}>
+        <header>
+          <strong>
+            {title.substring(0, 50)}
+            {title.length > 50 && '...'}
+          </strong>
+          <span>{intlFormatDistance(new Date(createdAt), new Date())}</span>
+        </header>
+        <p>
+          {body.substring(0, 200)}
+          {body.length > 200 && '...'}
+        </p>
+      </NavLink>
     </PostContainer>
   )
 }

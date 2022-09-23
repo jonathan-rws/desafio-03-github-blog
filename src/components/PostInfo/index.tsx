@@ -1,3 +1,5 @@
+import { intlFormatDistance } from 'date-fns'
+import { NavLink } from 'react-router-dom'
 import {
   PostInfodHeader,
   PostInfoContainer,
@@ -14,33 +16,48 @@ import {
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export function PostInfo() {
+interface PostInfoProps {
+  issue: {
+    title: string
+    githubUrl: string
+    creator: string
+    createdAt: string
+    comments: number
+  }
+}
+
+export function PostInfo({ issue }: PostInfoProps) {
   return (
     <PostInfoContainer>
       <PostInfodHeader>
-        <a href="#">
+        <NavLink to={'/'}>
           <FontAwesomeIcon icon={faAngleLeft} size="sm" />
           <span>VOLTAR</span>
-        </a>
-        <a href="#">
+        </NavLink>
+        <a href={issue.githubUrl}>
           <span>VER NO GITHUB</span>
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="sm" />
         </a>
       </PostInfodHeader>
-      <Title>JavaScript data types and data structures</Title>
+      <Title>{issue.title}</Title>
       <PostInfoFooter>
         <div>
           <FontAwesomeIcon icon={faGithub} />
-          <span>jonathan-rws</span>
+          <span>{issue.creator}</span>
         </div>
         <div>
           <FontAwesomeIcon icon={faCalendarDay} />
 
-          <span>Há 1 dia</span>
+          <span>
+            {issue.createdAt &&
+              intlFormatDistance(new Date(issue.createdAt), new Date())}
+          </span>
         </div>
         <div>
           <FontAwesomeIcon icon={faComment} />
-          <span>5 Comentários</span>
+          <span>
+            {issue.comments} Comentário{issue.comments > 1 && 's'}
+          </span>
         </div>
       </PostInfoFooter>
     </PostInfoContainer>

@@ -28,7 +28,6 @@ interface User {
 
 export function Profile() {
   const [user, setUser] = useState({} as User)
-  console.log(user)
   useEffect(() => {
     async function getUser() {
       const { data } = await api.get('users/jonathan-rws')

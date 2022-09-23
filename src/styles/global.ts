@@ -8,12 +8,13 @@ export const GlobalStyle = createGlobalStyle`
   } 
   :focus{
     outline: 0;
-    box-shadow:  0 0 4px red;
+    box-shadow:  0 0 4px ${(p) => p.theme.labe};
   }
   body{
     background: ${(props) => props.theme.input};
     color: ${(props) => props.theme.text};;
     webkit-font-smoothing: antialiased;
+   min-height: 100vh;
   }
   body, input, textarea, button{
     font: 1rem Roboto, sans-serif;

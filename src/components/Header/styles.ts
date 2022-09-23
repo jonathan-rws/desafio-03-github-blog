@@ -6,7 +6,7 @@ export const HeaderComponent = styled.header`
   margin: 0 auto;
 
   max-width: 90rem;
-  height: 296px;
+  height: 18.5rem;
   display: flex;
   justify-content: center;
   background-image: url(${cover});

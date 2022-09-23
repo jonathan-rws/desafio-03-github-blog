@@ -2,11 +2,11 @@ import styled from 'styled-components'
 
 export const PostInfoContainer = styled.div`
   padding: 2rem;
+  width: 100%;
   max-width: 54rem;
   background: ${(props) => props.theme.profile};
   margin: -5.5rem auto 0;
   border-radius: 10px;
-
   gap: 2rem;
 `
 export const PostInfodHeader = styled.header`
